@@ -8,5 +8,7 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
+    <item android:id="@+id/menu_marcadores" android:title="Marcador"></item>
+    <item android:id="@+id/menu_lineas" android:title="Lineas"></item>
 
 </menu>

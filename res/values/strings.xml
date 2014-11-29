@@ -4,5 +4,10 @@
     <string name="app_name">cualPasApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="GoogleMaps">GoogleMaps</string>
+    <string name="Autolocalizar">Autolocalizar</string>
+    <string name="Ingrese_Destino">destino</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="Ingrese_Ubicacion">ingrese ubicacion</string>
 
 </resources>
