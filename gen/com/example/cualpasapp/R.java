@@ -1240,6 +1240,7 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f020073;
     }
     public static final class id {
+        public static final int aceptar=0x7f0a0043;
         public static final int action_bar=0x7f0a001f;
         public static final int action_bar_activity_content=0x7f0a0001;
         public static final int action_bar_container=0x7f0a001e;
@@ -1251,13 +1252,15 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0a0002;
         public static final int action_menu_presenter=0x7f0a0003;
         public static final int action_mode_close_button=0x7f0a0027;
-        public static final int action_settings=0x7f0a0040;
+        public static final int action_settings=0x7f0a0045;
         public static final int activity_chooser_view_content=0x7f0a0028;
         public static final int always=0x7f0a0013;
+        public static final int autolocalizar=0x7f0a003f;
         public static final int beginning=0x7f0a001a;
         public static final int checkbox=0x7f0a0030;
         public static final int collapseActionView=0x7f0a0014;
         public static final int default_activity_button=0x7f0a002b;
+        public static final int destino=0x7f0a0042;
         public static final int dialog=0x7f0a0018;
         public static final int disableHome=0x7f0a000d;
         public static final int dropdown=0x7f0a0019;
@@ -1273,9 +1276,10 @@ containing a value of this type.
         public static final int image=0x7f0a002a;
         public static final int listMode=0x7f0a000b;
         public static final int list_item=0x7f0a002c;
-        public static final int map=0x7f0a003f;
-        public static final int menu_lineas=0x7f0a0042;
-        public static final int menu_marcadores=0x7f0a0041;
+        public static final int map=0x7f0a0044;
+        public static final int maps=0x7f0a0041;
+        public static final int menu_lineas=0x7f0a0047;
+        public static final int menu_marcadores=0x7f0a0046;
         public static final int middle=0x7f0a001c;
         public static final int never=0x7f0a0016;
         public static final int none=0x7f0a0007;
@@ -1304,6 +1308,7 @@ containing a value of this type.
         public static final int terrain=0x7f0a000a;
         public static final int title=0x7f0a002e;
         public static final int top_action_bar=0x7f0a0023;
+        public static final int ubicacion=0x7f0a0040;
         public static final int up=0x7f0a0024;
         public static final int useLogo=0x7f0a0012;
         public static final int withText=0x7f0a0017;

@@ -9,50 +9,55 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-<!--     <Button -->
-<!--         android:id="@+id/autolocalizar" -->
-<!--         android:layout_width="match_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:text="@string/Autolocalizar" /> -->
+    <Button
+    android:id="@+id/autolocalizar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/Autolocalizar" />
 
-<!--     <EditText -->
-<!--         android:id="@+id/ubicacion" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_above="@+id/autolocalizar" -->
-<!--         android:layout_centerHorizontal="true" -->
-<!--         android:layout_marginBottom="18dp" -->
-<!--         android:ems="10" -->
-<!--         android:text="@string/Ingrese_Ubicacion" > -->
 
-<!--         <requestFocus /> -->
-<!--     </EditText> -->
+    <EditText
+    android:id="@+id/ubicacion"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/autolocalizar"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="18dp"
+    android:ems="10"
+    android:text="@string/Ingrese_Ubicacion" >
 
-<!--     <Button -->
-<!--         android:id="@+id/maps" -->
-<!--         android:layout_width="match_parent" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:text="@string/GoogleMaps" /> -->
 
-<!--     <EditText -->
-<!--         android:id="@+id/destino" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:ems="10" -->
-<!--         android:text="@string/Ingrese_Destino" > -->
-<!--     </EditText> -->
+    <requestFocus />
+    </EditText>
 
-<!--     <Button -->
-<!--         android:id="@+id/button3" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_marginBottom="68dp" -->
-<!--         android:text="@string/Aceptar" /> -->
 
-    <fragment
+    <Button
+    android:id="@+id/maps"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/GoogleMaps" />
+
+
+    <EditText
+    android:id="@+id/destino"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:text="@string/Ingrese_Destino" >
+    </EditText>
+
+
+    <Button
+    android:id="@+id/aceptar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="68dp"
+    android:text="@string/Aceptar" />
+
+<fragment 
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.google.android.gms.maps.SupportMapFragment" />
+        class="com.google.android.gms.maps.SupportMapFragment"/>
 
 </LinearLayout>
