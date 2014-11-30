@@ -1,7 +1,11 @@
 package com.example.cualpasapp;
 
+import java.io.IOException;
+
 import android.content.Context;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,8 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -34,6 +39,9 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 	private LocationManager locManager;
 	private LocationListener locListener;
 
+	private Geocoder geocoder;
+	
+	
 	private GoogleMap mapa = null;
 
 	@Override
@@ -54,29 +62,26 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 
 		mapa = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map)).getMap();
-
-		mapa.setOnMapClickListener(new OnMapClickListener() {
-			public void onMapClick(LatLng point) {
-//				Projection proj = mapa.getProjection();
-//				Point coord = proj.toScreenLocation(point);
-
-				// Toast.makeText(
-				// MainActivity.this,
-				// "Click Largo\n" +
-				// "Lat: " + point.latitude + "\n" +
-				// "Lng: " + point.longitude + "\n" +
-				// "X: " + coord.x + " - Y: " + coord.y,
-				// Toast.LENGTH_SHORT).show();
-
-			}
-		});
+		CameraUpdate camUpd1 = CameraUpdateFactory.newLatLngZoom(new LatLng(
+				-38.73, -72.59), 13);
+		mapa.moveCamera(camUpd1);
+		mapa.setMyLocationEnabled(true);
 
 		mapa.setOnMapLongClickListener(new OnMapLongClickListener() {
 			public void onMapLongClick(LatLng point) {
-//				Projection proj = mapa.getProjection();
-//				Point coord = proj.toScreenLocation(point);
-				destino.setText("Lat: " + point.latitude + "\n" + "Lng: "
-						+ point.longitude + "\n");
+				// Projection proj = mapa.getProjection();
+				// Point coord = proj.toScreenLocation(point);
+				try {
+					geocoder = new Geocoder(getApplicationContext());
+					Address direccion = (geocoder.getFromLocation(point.latitude  , point.longitude,1)).get(0);
+					destino.setText(direccion.getAddressLine(0)+", "+direccion.getAddressLine(1));
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 				// "X: " + coord.x + " - Y: " + coord.y
 				// Toast.makeText(
 				// MainActivity.this,
@@ -87,20 +92,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 				// Toast.LENGTH_SHORT).show();
 			}
 		});
-
-		// mapa.setOnCameraChangeListener(new OnCameraChangeListener() {
-		// public void onCameraChange(CameraPosition position) {
-		// Toast.makeText(
-		// MainActivity.this,
-		// "Cambio Cámara\n" +
-		// "Lat: " + position.target.latitude + "\n" +
-		// "Lng: " + position.target.longitude + "\n" +
-		// "Zoom: " + position.zoom + "\n" +
-		// "Orientación: " + position.bearing + "\n" +
-		// "Ángulo: " + position.tilt,
-		// Toast.LENGTH_SHORT).show();
-		// }
-		// });
 
 		mapa.setOnMarkerClickListener(new OnMarkerClickListener() {
 			public boolean onMarkerClick(Marker marker) {
@@ -114,20 +105,14 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 	}
 
 	private void comenzarLocalizacion() {
-		// Obtenemos una referencia al LocationManager
+
 		locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-		// Obtenemos la �ltima posici�n conocida
-		Location loc = locManager
-				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		mostrarPosicion();
 
-		// Mostramos la �ltima posici�n conocida
-		mostrarPosicion(loc);
-
-		// Nos registramos para recibir actualizaciones de la posici�n
 		locListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
-				mostrarPosicion(location);
+				mostrarPosicion();
 			}
 
 			@Override
@@ -156,10 +141,20 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 
 	String asd = "";
 
-	private void mostrarPosicion(Location loc) {
+	private void mostrarPosicion() {
+		
+		try {
+			geocoder= new Geocoder(getApplicationContext());
+			Address direccion = (geocoder.getFromLocation(mapa.getMyLocation().getLatitude(), mapa.getMyLocation().getLongitude(),1)).get(0);
+			asd+=direccion.getAddressLine(0)+", "+direccion.getAddressLine(1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		asd += mapa.getMyLocation().getLatitude() + ","
+//				+ mapa.getMyLocation().getLongitude();
 
-		asd += "Latitud: " + String.valueOf(loc.getLatitude());
-		asd += ("\nLongitud: " + String.valueOf(loc.getLongitude()));
 		ubicacion.setText(asd);
 		asd = "";
 
@@ -174,14 +169,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		// int id = item.getItemId();
-		// if (id == R.id.action_settings) {
-		// return true;
-		// }
-		// return super.onOptionsItemSelected(item);
+
 		switch (item.getItemId()) {
 		case R.id.menu_marcadores:
 			mostrarMarcador(40.5, -3.5);
@@ -197,6 +185,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity {
 	private void mostrarMarcador(double lat, double lng) {
 		mapa.addMarker(new MarkerOptions().position(new LatLng(lat, lng))
 				.title("Pais: España"));
+		
 	}
 
 	private void mostrarLineas() {
