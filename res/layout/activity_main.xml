@@ -20,8 +20,6 @@
     android:id="@+id/ubicacion"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_above="@+id/autolocalizar"
-    android:layout_centerHorizontal="true"
     android:layout_marginBottom="18dp"
     android:ems="10"
     android:text="@string/Ingrese_Ubicacion" >
